@@ -1,0 +1,35 @@
+#Decision Tree
+!wget -O loan_train.csv https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-ML0101EN-SkillsNetwork/labs/FinalModule_Coursera/data/loan_train.csv
+df = pd.read_csv('loan_train.csv')
+Feature = df[['Principal','terms','age','Gender','effective_date']]
+X = Feature
+X[0:5]
+y = df['loan_status'].values
+y[0:5]
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=3)
+--2022-08-22 00:44:14--  https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-ML0101EN-SkillsNetwork/labs/FinalModule_Coursera/data/loan_train.csv
+Resolving cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud (cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud)... 169.63.118.104
+Connecting to cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud (cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud)|169.63.118.104|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 23101 (23K) [text/csv]
+Saving to: ‘loan_train.csv’
+
+loan_train.csv      100%[===================>]  22.56K  --.-KB/s    in 0.001s  
+
+2022-08-22 00:44:14 (34.2 MB/s) - ‘loan_train.csv’ saved [23101/23101]
+
+import numpy as np 
+import pandas as pd
+from sklearn.tree import DecisionTreeClassifier
+drugTree = DecisionTreeClassifier(criterion="entropy", max_depth = 4)
+df['Gender'].replace(to_replace=['male','female'], value=[0,1],inplace=True)df.head()  
+drugTree 
+drugTree.fit(X_train,y_train)
+​
+  File "/tmp/ipykernel_369/892807394.py", line 5
+    df['Gender'].replace(to_replace=['male','female'], value=[0,1],inplace=True)df.head()
+                                                                                 ^
+SyntaxError: invalid syntax
+tree.plot_tree(drugTree)
+plt.show()
